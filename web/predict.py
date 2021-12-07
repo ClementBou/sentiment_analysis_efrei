@@ -1,8 +1,9 @@
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
-from langdetect import detect
+from googletrans import Translator
 
 def checking_language(sentence):
-    if detect(sentence) == 'en':
+    t = Translator().detect(sentence)
+    if t.lang == 'en':
         return 1
     else:
         return 0
