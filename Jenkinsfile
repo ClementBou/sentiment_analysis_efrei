@@ -38,9 +38,10 @@ pipeline {
                 git config --global user.email "clement.boulanger@efrei.net"
                 git config --global user.name "ClementBou"
                 git config pull.rebase true
+                git fetch --all
+                git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
                 git checkout ${GIT_BRANCH}
                 git pull
-                git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
                 git checkout develop
                 git pull
                 git merge ${GIT_BRANCH}
@@ -54,7 +55,19 @@ pipeline {
                 branch 'develop'
             }
             steps {
-                echo 'release'
+                sh '''
+                /usr/local/bin/brew install hub
+                git config --global user.email "clement.boulanger@efrei.net"
+                git config --global user.name "ClementBou"
+                git config pull.rebase true
+                git fetch --all
+                git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
+                git checkout main
+                git pull
+                git checkout develop
+                git pull
+                /usr/local/bin/hub pull-request --message 'Release' --base main --head develop
+                '''
             }
         }
 
