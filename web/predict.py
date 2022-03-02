@@ -1,5 +1,7 @@
-from detoxify import Detoxify
 from googletrans import Translator
+import torch
+detoxify = torch.load('./web/model/detoxify.pt')
+
 
 
 def checking_language(sentence):
@@ -14,4 +16,4 @@ def predict(sentence):
     if checking_language(sentence) == 0:
         raise Exception("The text language used must be English")
     else:
-        return Detoxify('original').predict(sentence)
+        return detoxify('original').predict(sentence)
