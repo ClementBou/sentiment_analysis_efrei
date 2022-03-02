@@ -21,7 +21,7 @@ def test_not_toxic_sentence():
 def test_stress():
 
     counter = 0
-    nb_requested_row = 13
+    nb_requested_row = 9
 
     end = time() + 60
     while time() < end:
