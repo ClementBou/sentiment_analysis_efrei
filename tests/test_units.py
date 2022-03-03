@@ -21,13 +21,13 @@ def test_not_toxic_sentence():
 def test_stress():
 
     counter = 0
-    nb_requested_row = 13
+    nb_requested_row = 100
 
     end = time() + 60
     while time() < end:
         web.predict.predict(str("I hate all of them"))
         counter += 1
 
-    assert counter == nb_requested_row
+    assert counter >= nb_requested_row
     print(end)
 

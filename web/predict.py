@@ -1,6 +1,7 @@
 from detoxify import Detoxify
 from googletrans import Translator
 
+model = Detoxify('original')
 
 def checking_language(sentence):
     t = Translator()
@@ -14,4 +15,4 @@ def predict(sentence):
     if checking_language(sentence) == 0:
         raise Exception("The text language used must be English")
     else:
-        return Detoxify('original').predict(sentence)
+        return model.predict(sentence)
