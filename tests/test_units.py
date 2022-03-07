@@ -18,6 +18,7 @@ def test_toxic_sentence():
 def test_not_toxic_sentence():
     assert web.predict.predict(str("I love you"))["toxicity"] < 0.3
 
+# Commit example
 def test_stress():
 
     counter = 0
